@@ -20,10 +20,16 @@ class App extends React.Component {
 
   findMonsters = () =>  {
     const { monsters, searchTerm} = this.state;
-    return monsters.filter((monster)=>
+    if(searchTerm) {
+      return monsters.filter((monster)=>
             monster.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    } else {
+      return monsters;
+    }
   }
 
+  // this keyword here is bind to the app component because arrow functions bind the this keyword to the context
+  // where they are defined. 
   handleChange= (e) => {
     this.setState({searchTerm: e.target.value})
   }
